@@ -1,0 +1,55 @@
+* {
+	font-family: "Times New Roman", Times, serif;;
+}
+
+html {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+}
+
+.content {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5vw;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+
+.full-name {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	font-size: 250%;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.footer {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	font-style: italic;
+}
+
+.heading {
+	font-weight: bold;
+}
+
+.grid-item {
+	padding: 25px;
+}
+
+.menu {
+	border-right: 1px solid black;
+	line-height: 1.5;
+}
+
+.art {
+	text-wrap: wrap;
+}
