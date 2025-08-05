@@ -3,8 +3,10 @@ const mouse = {
   x: 0,
   y: 0
 }
-const BRIGHTNESS = " .:-=+*#%@";
-
+//                  .:-=+#%@
+const ASCII_MAP = " ·-:;coxa";
+var prev_location = "340;-25";
+var num_rows = 36;
 
 
 window.addEventListener("load", (event) => {
@@ -43,20 +45,38 @@ function map(value, in_min, in_max, out_min, out_max) {
 
 function fillArt() {
   let art_container = document.getElementById("art");
-  const num_rows = getComputedStyle(art_container)
+  num_rows = getComputedStyle(art_container)
                    .getPropertyValue('grid-template-rows')
                    .split(' ').length;
 
   for (let i = 0; i < num_rows; i++) {
     for (let j = 0; j < num_rows; j++) {
-      if (Math.sqrt(i ** 2 + j ** 2) < 15)
-        art_container.innerHTML += `<div class="r${i} c${j} pixel">o</div>`;
-      else
-        art_container.innerHTML += `<div class="r${i} c${j} pixel">x</div>`;
-
+      art_container.innerHTML += `<div class="r${i} c${j} pixel"> </div>`;
     }
   }
 
+  // x o a . : ; - 
+  // · - : ; c o a x
+  // let chars = "a c e n o u v x z . : ; - · °".split(' ')
+  // count = 0;
+  // for (let char of chars) {
+  //   setPixel(count, 0, char);
+  //   count++;
+  // }
+
+  // for (const key in shark['340;-25'].data) {
+  //   for (let position of shark['340;-25'].data[key]) {
+  //     setPixel(position[0], position[1], ASCII_MAP[parseInt(key)])
+  //   }
+  // }
+
+}
+
+
+function compress(x) {
+  let a = Math.pow(window.innerWidth / 2, 2/3);
+  let out = a * Math.cbrt(x - (window.innerWidth / 2)) + (window.innerWidth / 2);
+  return out;
 }
 
 
@@ -71,10 +91,6 @@ function loop() {
     y: (artrect.top + artrect.bottom) / 2
   };
 
-  let angle = getAngle(mouse, art_pos);
-  // console.log(angle * 180 / Math.PI);
-
-  setPixel(3, 3, 'x');
 
   const torontoTime = now.toLocaleString('en-CA', {
     timeZone: 'America/Toronto',
@@ -83,6 +99,43 @@ function loop() {
 
   time.innerHTML = torontoTime[1];
   ampm.innerHTML = torontoTime[2][0].toUpperCase() + torontoTime[2][2].toUpperCase();
+
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const alpha = parseInt((parseInt(map(compress(mouse.x), 0, width, 340, 200)) - 1) / 3) * 3 + 1;
+  const beta = parseInt(parseInt(map(mouse.y, 0, height, 0, 50)) / 3) * 3 - 25;
+
+
+
+  const main_key = `${alpha};${beta}`
+
+    for (const key in shark[prev_location].data) {
+      for (let position of shark[prev_location].data[key]) {
+        let x = parseInt(map(position[0], 0, 24, 0, num_rows - 1));
+        let y = parseInt(map(position[1], 0, 24, 0, num_rows - 1));
+
+        setPixel(x, y, ' ')
+      }
+    }
+
+  try {
+    for (const key in shark[main_key].data) {
+      for (let position of shark[main_key].data[key]) {
+        let x = parseInt(map(position[0], 0, 24, 0, num_rows - 1));
+        let y = parseInt(map(position[1], 0, 24, 0, num_rows - 1));
+        // figure out how to check if pixel is next to a dead pixel and draw it too
+
+        setPixel(x, y, ASCII_MAP[parseInt(key)])
+      }
+    }
+
+    prev_location = main_key;
+  } catch (e) {
+
+  }
+
 }
 
 
