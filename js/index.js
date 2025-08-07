@@ -10,6 +10,18 @@ var num_rows = 36;
 
 // blue colours for shark
 const COLOURS = [
+  "#CCCCFF", // very light blue-violet tint
+  "#CCCCFF", // very light blue-violet tint
+  "#9999FF", // light periwinkle
+  "#6666FF", // soft electric blue
+  "#3333FF", // vivid royal blue
+  "#1A1AFF", // strong pure blue
+  "#0000F1", // target color
+  "#0000C1", // slightly darker
+  "#000091" // dark blue
+];
+/*
+[
   "#B8DDEB",
   "#A3D2E7",
   "#8DC6E0",
@@ -20,7 +32,7 @@ const COLOURS = [
   "#2F83B2",
   "#2275A4"
 ];
-
+*/
 window.addEventListener("load", (event) => {
 
   // get timezone in toronto
