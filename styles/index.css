@@ -28,8 +28,22 @@ html {
 
 .full-name {
 	display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
+	font-size: 250%;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.name-container:hover span {
+  display: none
+}
+
+.name-container:hover:before {
+  content: 'ЛУКА ЈОВАНОВИЋ';
+	display: flex;
+  justify-content: center;
+  align-items: center;
 	font-size: 250%;
 	font-weight: bold;
 	font-style: italic;
