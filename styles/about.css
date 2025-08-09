@@ -1,0 +1,49 @@
+* {
+	font-family: "Times New Roman", Times, serif;
+}
+
+body {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	margin: 10vw;
+	height: 100vw;
+}
+
+#me {
+	width: 100%;
+}
+
+.caption {
+	font-style: italic;
+	text-align: center;
+}
+
+.image-column {
+	max-width: 100%; /* Ensures the image does not exceed the div's width */
+	height: auto;    /* Maintains the image's aspect ratio */
+	display: block;
+}
+
+.text-section {
+	margin-left: 5vw;
+}
+
+.text-heading {
+	font-weight: bold;
+	font-size: 200%;
+	font-style: italic;
+}
+
+.text-body {
+	margin-bottom: 3vh;
+}
+
+.text-point {
+	display: flex;
+	margin-bottom: 0.5vh;
+	margin-top: 0.5vh;
+}
+
+.text-arrow {
+	margin-right: 5px;
+}
